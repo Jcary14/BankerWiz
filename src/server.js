@@ -24,6 +24,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'banker-wiz' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Banker Wiz API running on port ${PORT}`);
-});
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`Banker Wiz API running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
